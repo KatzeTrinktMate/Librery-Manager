@@ -7,19 +7,17 @@ public class Book {
     private Long id;
     private String isbn;
     private String title;
-    private String autor;
+    private String author;
     private int year;
     private int stock;
     private BigDecimal price;
 
     //Constructor
-
-
-    public Book(Long id, String isbn, String title, String autor, int year, int stock, BigDecimal price) {
+    public Book(Long id, String isbn, String title, String author, int year, int stock, BigDecimal price) {
         setId(id);
         setIsbn(isbn);
         setTitle(title);
-        setAutor(autor);
+        setAuthor(author);
         setYear(year);
         setStock(stock);
         setPrice(price);
@@ -28,11 +26,11 @@ public class Book {
     //Methods
     @Override
     public String toString() {
-        return "Libro{" +
+        return "Book{" +
                 "id=" + id +
                 ", isbn='" + isbn + '\'' +
                 ", title='" + title + '\'' +
-                ", autor='" + autor + '\'' +
+                ", author='" + author + '\'' +
                 ", year=" + year +
                 ", stock=" + stock +
                 ", price=" + price +
@@ -41,8 +39,8 @@ public class Book {
 
     //I choice isbn because each book has its own isbn. If i want to add or search an existing book, the equals method uses the isbn as unique identifier
     @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
+    public boolean equals(Object o){
+        if (o == null && getClass() != o.getClass()) return false;
         Book libro = (Book) o;
         return Objects.equals(isbn, libro.isbn);
     }
@@ -59,7 +57,7 @@ public class Book {
     }
 
     public void setId(Long id) {
-        this.id = id + 1;
+        this.id = id;
     }
 
     public String getIsbn() {
@@ -78,12 +76,12 @@ public class Book {
         this.title = title;
     }
 
-    public String getAutor() {
-        return autor;
+    public String getAuthor() {
+        return author;
     }
 
-    public void setAutor(String autor) {
-        this.autor = autor;
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     public int getYear() {
