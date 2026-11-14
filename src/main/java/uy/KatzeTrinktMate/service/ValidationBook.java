@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 public class ValidationBook {
     //Compare if the price of book is negative
     public boolean priceNegative(BigDecimal p){
-       return p.compareTo(BigDecimal.ZERO) < 0 || p == null;
+       return p == null || p.compareTo(BigDecimal.ZERO) < 0;
     }
     //Verifique if a isbn alredy exist
     public boolean isbnExist(String isbn, Book i){
