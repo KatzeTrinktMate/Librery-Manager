@@ -40,7 +40,7 @@ public class Book {
     //I choice isbn because each book has its own isbn. If i want to add or search an existing book, the equals method uses the isbn as unique identifier
     @Override
     public boolean equals(Object o){
-        if (o == null && getClass() != o.getClass()) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         Book libro = (Book) o;
         return Objects.equals(isbn, libro.isbn);
     }
