@@ -1,6 +1,6 @@
 package uy.KatzeTrinktMate.repository;
 
-public interface BookActions {
+public interface BookRepository {
     public void addBook();
 
     public void editBook();
