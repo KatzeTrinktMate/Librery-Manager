@@ -8,8 +8,4 @@ public class ValidationBook {
     public boolean priceNegative(BigDecimal p){
        return p == null || p.compareTo(BigDecimal.ZERO) < 0;
     }
-    //Verifique if a isbn alredy exist
-    public boolean isbnExist(String isbn, Book i){
-        return i.getIsbn().trim().equals(isbn.trim());
-    }
 }
