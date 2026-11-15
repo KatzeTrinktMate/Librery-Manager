@@ -3,10 +3,7 @@ package uy.KatzeTrinktMate.model;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-import uy.KatzeTrinktMate.repository.BookActions;
-import uy.KatzeTrinktMate.service.ValidationBook;
-
-public class Book implements BookActions {
+public class Book {
     private Long id;
     private String isbn;
     private String title;
@@ -111,40 +108,4 @@ public class Book implements BookActions {
         this.price = price;
     }
 
-
-    //Interfaces
-    @Override
-    public void addBook() {
-
-    }
-
-    @Override
-    public void editBook() {
-
-    }
-
-    @Override
-    public void showBooks() {
-
-    }
-
-    @Override
-    public void bookForAuthor(String author) {
-
-    }
-
-    @Override
-    public void bookForISBN(String isbn) {
-
-    }
-
-    @Override
-    public void bookForTitle(String title) {
-
-    }
-
-    @Override
-    public void deleteBook(Long id) {
-
-    }
 }
