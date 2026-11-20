@@ -1,5 +1,7 @@
 package uy.KatzeTrinktMate.model;
 
+import uy.KatzeTrinktMate.repository.BookRepository;
+
 public class BookActions implements BookRepository {
 
     @Override
