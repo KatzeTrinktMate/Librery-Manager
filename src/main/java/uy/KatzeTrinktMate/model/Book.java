@@ -52,6 +52,7 @@ public class Book {
 
 
     //getter and setters
+    //for the moment, the setters has not valditations, but then i'll code, i promise :3
     public Long getId() {
         return id;
     }
