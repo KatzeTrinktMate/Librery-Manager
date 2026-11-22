@@ -10,18 +10,15 @@ import uy.KatzeTrinktMate.model.Book;
 
 public class MemorySaveBook implements BookRepository {
     Map<Long, Book> bookStorage = new HashMap<>();
-    List authors = new ArrayList<>();
-    List titleBooks = new ArrayList<>();
-    
+
     @Override
-    public Book addBook(Long id, Book newBook) {
+    public Book addBook(Book newBook) {
         try {
-            if (id == null || newBook == null) throw new NullPointerException(); 
-            bookStorage.put(id, newBook);
+            bookStorage.put(newBook.getId(), newBook);
         } catch (Exception e) {
-            System.out.println("Something error was happend ->" + e);
-        } finally{
-        return newBook;
+            System.out.println("Something happend was error ->" + e);
+        }finally{
+            return newBook;
         }
     }
 
@@ -33,43 +30,47 @@ public class MemorySaveBook implements BookRepository {
 
     @Override
     public Map<Long, Book> showBooks() {
+        //idk what return, but this show all books ñe >:3
         return this.bookStorage;
     }
 
     @Override
     public List<Book> bookForAuthor(String author) {
-    for (Book temBook : bookStorage.values()) {
-        if (temBook.getAuthor() != author) {
-            continue;
-        }else{
-            authors.add(temBook);
+        List<Book> authors = new ArrayList<>();
+        for (Book temBook : bookStorage.values()) {
+            if (temBook.getAuthor().equalsIgnoreCase(author))
+                authors.add(temBook);
         }
-    }
-    return authors;
+        return authors;
     }
 
     @Override
     public Optional<Book> bookForISBN(String isbn) {
-        // TODO Auto-generated method stub
+        // for the moment i don't write nothing :P
         throw new UnsupportedOperationException("Unimplemented method 'bookForISBN'");
     }
 
     @Override
     public List<Book> bookForTitle(String title) {
-        for (Book temBook : bookStorage.values()) {
-            if (temBook.getTitle() != title) {
-                continue;
-            }else{
-                titleBooks.add(temBook);
-            }
+        List<Book> titleBooks = new ArrayList<>();
+        for (Book tempBook : bookStorage.values()) {
+            if (tempBook.getTitle().equalsIgnoreCase(title))
+                titleBooks.add(tempBook);
         }
         return titleBooks;
     }
 
     @Override
-    public boolean deleteBook(Long id) {
+    public boolean deleteBook(Book delBook) {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteBook'");
+        Long id = delBook.getId();
+        var state = false;
+        if (id != null || id > 0 || !bookStorage.containsKey(id)) {
+            System.out.println("Book is was delete");
+            bookStorage.remove(id, delBook);
+            state = true;
+        }
+        return state;
     }
-    
+
 }
