@@ -11,13 +11,13 @@ public interface BookRepository {
 
     public Book editBook(Long id, Book editBook);
 
-    public List<Book> showBooks();
+    public Map<Long, Book> showBooks();
 
-    public Map<Long, Book> bookForAuthor(String author);
+    public List<Book> bookForAuthor(String author);
 
     public Optional<Book> bookForISBN(String isbn);
 
-    public Map<Long, Book> bookForTitle(String title);
+    public List<Book> bookForTitle(String title);
 
     public boolean deleteBook(Long id);
 }
