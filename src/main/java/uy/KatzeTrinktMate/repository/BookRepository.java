@@ -7,7 +7,7 @@ import uy.KatzeTrinktMate.model.Book;
 
 public interface BookRepository {
     
-    public Book addBook(Long id, Book newBook);
+    public Book addBook(Book newBook);
 
     public Book editBook(Long id, Book editBook);
 
@@ -19,5 +19,5 @@ public interface BookRepository {
 
     public List<Book> bookForTitle(String title);
 
-    public boolean deleteBook(Long id);
+    public boolean deleteBook(Book delBook);
 }
