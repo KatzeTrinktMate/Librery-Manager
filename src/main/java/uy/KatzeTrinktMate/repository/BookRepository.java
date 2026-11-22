@@ -7,7 +7,7 @@ import uy.KatzeTrinktMate.model.Book;
 
 public interface BookRepository {
     
-    public Book addBook(Book newBook);
+    public Book addBook(Long id, Book newBook);
 
     public Book editBook(Long id, Book editBook);
 
