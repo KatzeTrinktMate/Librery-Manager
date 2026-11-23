@@ -14,23 +14,23 @@ public class MemorySaveBook implements BookRepository {
     @Override
     public Book addBook(Book newBook) {
         
-         try {
-             Long id = newBook.getId();
-             if (id == null || id < 0 || !bookStorage.containsKey(id)) {
-                 throw new IllegalArgumentException("The book " + newBook.getTitle() + " is alredy exist");
-             } else {
-                 bookStorage.put(newBook.getId(), newBook);
-             }
-         } catch (Exception e) {
-             System.out.println("Something happend was error ->" + e);
-         } finally {
-             return newBook;
-         }
+        //  try {
+        //      Long id = newBook.getId();
+        //      if (id == null || id < 0 || !bookStorage.containsKey(id)) {
+        //          throw new IllegalArgumentException("The book " + newBook.getTitle() + " is alredy exist");
+        //      } else {
+        //          bookStorage.put(newBook.getId(), newBook);
+        //      }
+        //  } catch (Exception e) {
+        //      System.out.println("Something happend was error ->" + e);
+        //  } finally {
+        //      return newBook;
+        //  }
+        return newBook;
     }
 
     @Override
     public Book editBook(Long id, Book editBook) {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'editBook'");
     }
 
