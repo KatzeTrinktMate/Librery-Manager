@@ -11,22 +11,22 @@ import uy.KatzeTrinktMate.model.Book;
 public class MemorySaveBook implements BookRepository {
     Map<Long, Book> bookStorage = new HashMap<>();
 
-
     @Override
     public Book addBook(Book newBook) {
-        
-        //  try {
-        //      Long id = newBook.getId();
-        //      if (id == null || id < 0 || !bookStorage.containsKey(id)) {
-        //          throw new IllegalArgumentException("The book " + newBook.getTitle() + " is alredy exist");
-        //      } else {
-        //          bookStorage.put(newBook.getId(), newBook);
-        //      }
-        //  } catch (Exception e) {
-        //      System.out.println("Something happend was error ->" + e);
-        //  } finally {
-        //      return newBook;
-        //  }
+
+        // try {
+        // Long id = newBook.getId();
+        // if (id == null || id < 0 || !bookStorage.containsKey(id)) {
+        // throw new IllegalArgumentException("The book " + newBook.getTitle() + " is
+        // alredy exist");
+        // } else {
+        // bookStorage.put(newBook.getId(), newBook);
+        // }
+        // } catch (Exception e) {
+        // System.out.println("Something happend was error ->" + e);
+        // } finally {
+        // return newBook;
+        // }
         return newBook;
     }
 
@@ -49,12 +49,6 @@ public class MemorySaveBook implements BookRepository {
                 authors.add(temBook);
         }
         return authors;
-        List<Book> authors = new ArrayList<>();
-        for (Book temBook : bookStorage.values()) {
-            if (temBook.getAuthor().equalsIgnoreCase(author))
-                authors.add(temBook);
-        }
-        return authors;
     }
 
     @Override
@@ -70,10 +64,6 @@ public class MemorySaveBook implements BookRepository {
         for (Book tempBook : bookStorage.values()) {
             if (tempBook.getTitle().equalsIgnoreCase(title))
                 titleBooks.add(tempBook);
-        List<Book> titleBooks = new ArrayList<>();
-        for (Book tempBook : bookStorage.values()) {
-            if (tempBook.getTitle().equalsIgnoreCase(title))
-                titleBooks.add(tempBook);
         }
         return titleBooks;
     }
@@ -81,11 +71,12 @@ public class MemorySaveBook implements BookRepository {
     @Override
     public boolean deleteBook(Book delBook) {
         Long id = delBook.getId();
-        if (delBook == null || id == null || id < 0) throw new IllegalArgumentException("Book invalid");
-        if (bookStorage.containsKey(id)) throw new IllegalArgumentException("Book"+ delBook.getTitle() +" wasn't found");
+        if (delBook == null || id == null || id < 0)
+            throw new IllegalArgumentException("Book invalid");
+        if (bookStorage.containsKey(id))
+            throw new IllegalArgumentException("Book" + delBook.getTitle() + " wasn't found");
         System.out.println("Book was deleted");
         return bookStorage.remove(id, delBook);
     }
-
 
 }
