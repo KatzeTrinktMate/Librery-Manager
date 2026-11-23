@@ -11,6 +11,7 @@ import uy.KatzeTrinktMate.model.Book;
 public class MemorySaveBook implements BookRepository {
     Map<Long, Book> bookStorage = new HashMap<>();
 
+
     @Override
     public Book addBook(Book newBook) {
         
@@ -48,16 +49,27 @@ public class MemorySaveBook implements BookRepository {
                 authors.add(temBook);
         }
         return authors;
+        List<Book> authors = new ArrayList<>();
+        for (Book temBook : bookStorage.values()) {
+            if (temBook.getAuthor().equalsIgnoreCase(author))
+                authors.add(temBook);
+        }
+        return authors;
     }
 
     @Override
     public Optional<Book> bookForISBN(String isbn) {
+        // for the moment i don't write nothing :P
         // for the moment i don't write nothing :P
         throw new UnsupportedOperationException("Unimplemented method 'bookForISBN'");
     }
 
     @Override
     public List<Book> bookForTitle(String title) {
+        List<Book> titleBooks = new ArrayList<>();
+        for (Book tempBook : bookStorage.values()) {
+            if (tempBook.getTitle().equalsIgnoreCase(title))
+                titleBooks.add(tempBook);
         List<Book> titleBooks = new ArrayList<>();
         for (Book tempBook : bookStorage.values()) {
             if (tempBook.getTitle().equalsIgnoreCase(title))
@@ -74,5 +86,6 @@ public class MemorySaveBook implements BookRepository {
         System.out.println("Book was deleted");
         return bookStorage.remove(id, delBook);
     }
+
 
 }
