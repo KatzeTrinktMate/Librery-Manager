@@ -18,6 +18,7 @@ public class MemorySaveBook implements BookRepository {
         Long id = newBook.getId();
         if (id == null || id < 0)
             throw new IllegalArgumentException ("Book can't be null");
+        //the putIfAbsent is a method check if the Data is not alredy exist, if id no exist, use the .put method 
         if (bookStorage.putIfAbsent(id, newBook) != null) {
             throw new IllegalArgumentException("The book already exists");
         }
@@ -30,9 +31,13 @@ public class MemorySaveBook implements BookRepository {
     }
 
     @Override
-    public Map<Long, Book> showBooks() {
-        // idk what return, but this show all books ñeje >:3
-        return this.bookStorage;
+    public List<Book> showBooks() {
+        // :3
+        List<Book> allBooks = new ArrayList<>();
+        for (Book books : bookStorage.values()) {
+            allBooks.add(books);
+        }
+        return (!allBooks.isEmpty()) ? allBooks : null;
     }
 
     @Override
@@ -47,7 +52,6 @@ public class MemorySaveBook implements BookRepository {
 
     @Override
     public Optional<Book> bookForISBN(String isbn) {
-        // for the moment i don't write nothing :P
         // for the moment i don't write nothing :P
         throw new UnsupportedOperationException("Unimplemented method 'bookForISBN'");
     }

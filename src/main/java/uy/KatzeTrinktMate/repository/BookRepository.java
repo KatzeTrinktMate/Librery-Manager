@@ -11,7 +11,7 @@ public interface BookRepository {
 
     public Book editBook(Long id, Book editBook);
 
-    public Map<Long, Book> showBooks();
+    public List<Book> showBooks();
 
     public List<Book> bookForAuthor(String author);
 
