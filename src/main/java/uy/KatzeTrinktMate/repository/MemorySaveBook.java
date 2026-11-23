@@ -32,12 +32,7 @@ public class MemorySaveBook implements BookRepository {
 
     @Override
     public List<Book> showBooks() {
-        // :3
-        List<Book> allBooks = new ArrayList<>();
-        for (Book books : bookStorage.values()) {
-            allBooks.add(books);
-        }
-        return (!allBooks.isEmpty()) ? allBooks : null;
+        return new ArrayList<>(bookStorage.values()); //:3
     }
 
     @Override
