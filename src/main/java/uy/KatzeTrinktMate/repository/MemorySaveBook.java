@@ -13,13 +13,19 @@ public class MemorySaveBook implements BookRepository {
 
     @Override
     public Book addBook(Book newBook) {
-        try {
-            bookStorage.put(newBook.getId(), newBook);
-        } catch (Exception e) {
-            System.out.println("Something happend was error ->" + e);
-        }finally{
-            return newBook;
-        }
+        
+         try {
+             Long id = newBook.getId();
+             if (id == null || id < 0 || !bookStorage.containsKey(id)) {
+                 throw new IllegalArgumentException("The book " + newBook.getTitle() + " is alredy exist");
+             } else {
+                 bookStorage.put(newBook.getId(), newBook);
+             }
+         } catch (Exception e) {
+             System.out.println("Something happend was error ->" + e);
+         } finally {
+             return newBook;
+         }
     }
 
     @Override
@@ -30,7 +36,7 @@ public class MemorySaveBook implements BookRepository {
 
     @Override
     public Map<Long, Book> showBooks() {
-        //idk what return, but this show all books ñe >:3
+        // idk what return, but this show all books ñeje >:3
         return this.bookStorage;
     }
 
@@ -62,15 +68,11 @@ public class MemorySaveBook implements BookRepository {
 
     @Override
     public boolean deleteBook(Book delBook) {
-        // TODO Auto-generated method stub
         Long id = delBook.getId();
-        var state = false;
-        if (id != null || id > 0 || !bookStorage.containsKey(id)) {
-            System.out.println("Book is was delete");
-            bookStorage.remove(id, delBook);
-            state = true;
-        }
-        return state;
+        if (delBook == null || id == null || id < 0) throw new IllegalArgumentException("Book invalid");
+        if (bookStorage.containsKey(id)) throw new IllegalArgumentException("Book"+ delBook.getTitle() +" wasn't found");
+        System.out.println("Book was deleted");
+        return bookStorage.remove(id, delBook);
     }
 
 }
