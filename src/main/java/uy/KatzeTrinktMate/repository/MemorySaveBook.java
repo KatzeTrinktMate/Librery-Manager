@@ -13,20 +13,14 @@ public class MemorySaveBook implements BookRepository {
 
     @Override
     public Book addBook(Book newBook) {
-
-        // try {
-        // Long id = newBook.getId();
-        // if (id == null || id < 0 || !bookStorage.containsKey(id)) {
-        // throw new IllegalArgumentException("The book " + newBook.getTitle() + " is
-        // alredy exist");
-        // } else {
-        // bookStorage.put(newBook.getId(), newBook);
-        // }
-        // } catch (Exception e) {
-        // System.out.println("Something happend was error ->" + e);
-        // } finally {
-        // return newBook;
-        // }
+        if (newBook == null) 
+            throw new IllegalArgumentException ("Book can't be null");
+        Long id = newBook.getId();
+        if (id == null || id < 0)
+            throw new IllegalArgumentException ("Book can't be null");
+        if (bookStorage.putIfAbsent(id, newBook) != null) {
+            throw new IllegalArgumentException("The book already exists");
+        }
         return newBook;
     }
 
