@@ -1,9 +1,11 @@
 package uy.KatzeTrinktMate.repository;
 
+import java.lang.classfile.ClassFile.Option;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 
 import uy.KatzeTrinktMate.model.Book;
@@ -47,8 +49,11 @@ public class MemorySaveBook implements BookRepository {
 
     @Override
     public Optional<Book> bookForISBN(String isbn) {
-        // for the moment i don't write nothing :P
-        throw new UnsupportedOperationException("Unimplemented method 'bookForISBN'");
+        for (Book searchBook : bookStorage.values()) {
+            if (Objects.equals(searchBook.getIsbn(), isbn))
+                return Optional.of(searchBook);
+        }
+        return Optional.empty();
     }
 
     @Override
