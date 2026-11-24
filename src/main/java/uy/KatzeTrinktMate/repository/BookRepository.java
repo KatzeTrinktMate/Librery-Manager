@@ -1,6 +1,5 @@
 package uy.KatzeTrinktMate.repository;
 
-import java.util.Map;
 import java.util.List;
 import java.util.Optional;
 import uy.KatzeTrinktMate.model.Book;
@@ -19,5 +18,5 @@ public interface BookRepository {
 
     public List<Book> bookForTitle(String title);
 
-    public boolean deleteBook(Book delBook);
+    public boolean deleteBook(Long id);
 }
