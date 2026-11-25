@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.Optional;
+import java.lang.Iterable;
 
 import uy.KatzeTrinktMate.model.Book;
 
@@ -36,7 +37,7 @@ public class MemorySaveBook implements BookRepository {
         
         Book oldBook = bookStorage.get(id);
         if (oldBook == null)
-            throw new NoSuchElementException("The Book with id:" + editBook.getId() + " does not exist");
+            throw new NoSuchElementException("The Book with id:" + id + " does not exist");
 
         //We confirm that the id used is for the edited book
         editBook.setId(id);
@@ -68,6 +69,16 @@ public class MemorySaveBook implements BookRepository {
         for (Book searchBook : bookStorage.values()) {
             if (Objects.equals(searchBook.getIsbn(), isbn))
                 return Optional.of(searchBook);
+        }
+        return Optional.empty();
+    }
+
+    @Override 
+    public Optional<Book> bookForId(Long id){
+        for (Book searchBook : bookStorage.values()) {
+            if (searchBook.getId() == id) {
+            return Optional.ofNullable(searchBook);
+            }
         }
         return Optional.empty();
     }

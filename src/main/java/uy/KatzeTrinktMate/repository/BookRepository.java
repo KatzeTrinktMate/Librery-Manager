@@ -16,6 +16,8 @@ public interface BookRepository {
 
     public Optional<Book> bookForISBN(String isbn);
 
+    public Optional<Book> bookForId(Long id);
+
     public List<Book> bookForTitle(String title);
 
     public void deleteBook(Long id);
