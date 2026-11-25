@@ -26,8 +26,7 @@ public class MemorySaveBook implements BookRepository {
         }
         return newBook;
     }
-
-    //solo me falta este nama :P
+    
     @Override
     public Book editBook(Long id, Book editBook) {
         if (id == null || id <= 0) 
@@ -37,7 +36,7 @@ public class MemorySaveBook implements BookRepository {
         
         Book oldBook = bookStorage.get(id);
         if (oldBook == null)
-            throw new NoSuchElementException("The Book " + editBook.getTitle() + "does not exist");
+            throw new NoSuchElementException("The Book with id:" + editBook.getId() + " does not exist");
 
         //We confirm that the id used is for the edited book
         editBook.setId(id);
@@ -92,7 +91,7 @@ public class MemorySaveBook implements BookRepository {
             throw new IllegalArgumentException("Book invalid");
         Book delBook = bookStorage.get(id);
         if (delBook == null)
-            throw new IllegalArgumentException("Book wasn't found");
+            throw new NoSuchElementException("Book wasn't found");
             
         bookStorage.remove(id, delBook);
     }
