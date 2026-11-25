@@ -38,9 +38,7 @@ public class MemorySaveBook implements BookRepository {
         Book oldBook = bookStorage.get(id);
         if (oldBook == null)
             throw new NoSuchElementException("The Book " + editBook.getTitle() + "does not exist");
-        if (Objects.equals(editBook, oldBook)){
-            return oldBook;
-        }
+
         //We confirm that the id used is for the edited book
         editBook.setId(id);
         bookStorage.put(id, editBook);
@@ -59,7 +57,7 @@ public class MemorySaveBook implements BookRepository {
         if (author == null || author.isBlank())
             throw new IllegalArgumentException ("Book wasn't found");
         for (Book temBook : bookStorage.values()) {
-            if (temBook.getAuthor().toLowerCase().contains(author))
+            if (temBook.getAuthor().toLowerCase().contains(author.trim().toLowerCase()))
                 authors.add(temBook);
         }
         return authors;
