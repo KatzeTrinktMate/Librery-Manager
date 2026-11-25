@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -29,7 +30,22 @@ public class MemorySaveBook implements BookRepository {
     //solo me falta este nama :P
     @Override
     public Book editBook(Long id, Book editBook) {
-        throw new UnsupportedOperationException("Unimplemented method 'editBook'");
+        if (id == null || id <= 0) 
+            throw new IllegalArgumentException ("Invalid book ID");
+        if (editBook == null) 
+            throw new IllegalArgumentException("Book data can't be null");
+        
+        Book oldBook = bookStorage.get(id);
+        if (oldBook == null)
+            throw new NoSuchElementException("The Book " + editBook.getTitle() + "does not exist");
+        if (Objects.equals(editBook, oldBook)){
+            return oldBook;
+        }
+        //We confirm that the id used is for the edited book
+        editBook.setId(id);
+        bookStorage.put(id, editBook);
+            
+        return editBook;
     }
 
     @Override
