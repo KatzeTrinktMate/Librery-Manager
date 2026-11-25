@@ -18,5 +18,5 @@ public interface BookRepository {
 
     public List<Book> bookForTitle(String title);
 
-    public boolean deleteBook(Long id);
+    public void deleteBook(Long id);
 }
