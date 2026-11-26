@@ -7,7 +7,6 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.Optional;
-import java.lang.Iterable;
 
 import uy.KatzeTrinktMate.model.Book;
 
@@ -55,7 +54,7 @@ public class MemorySaveBook implements BookRepository {
     public List<Book> bookForAuthor(String author) {
         List<Book> authors = new ArrayList<>();
         if (author == null || author.isBlank())
-            throw new IllegalArgumentException ("Book wasn't found");
+            throw new IllegalArgumentException ("Search author of book can't be empty");
         for (Book temBook : bookStorage.values()) {
             if (temBook.getAuthor().toLowerCase().contains(author.trim().toLowerCase()))
                 authors.add(temBook);
@@ -83,7 +82,7 @@ public class MemorySaveBook implements BookRepository {
     public List<Book> bookForTitle(String title) {
         List<Book> titleBooks = new ArrayList<>();
         if (title == null || title.isBlank()) 
-            throw new IllegalArgumentException ("Book wasn't found");
+            throw new IllegalArgumentException ("Search text of book can't be empty");
         for (Book tempBook : bookStorage.values()) {
             if (tempBook.getTitle().toLowerCase().contains(title.trim().toLowerCase()))
                 titleBooks.add(tempBook);
