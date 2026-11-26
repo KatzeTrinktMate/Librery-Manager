@@ -73,14 +73,10 @@ public class MemorySaveBook implements BookRepository {
         return Optional.empty();
     }
 
+    //this method is for use other methods
     @Override 
     public Optional<Book> bookForId(Long id){
-        for (Book searchBook : bookStorage.values()) {
-            if (searchBook.getId() == id) {
-            return Optional.ofNullable(searchBook);
-            }
-        }
-        return Optional.empty();
+        return Optional.ofNullable(bookStorage.get(id));
     }
 
     @Override
